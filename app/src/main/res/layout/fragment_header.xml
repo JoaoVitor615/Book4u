@@ -32,17 +32,20 @@
         tools:layout_editor_absoluteY="10dp" />
 
     <androidx.constraintlayout.utils.widget.ImageFilterButton
+        android:id="@+id/buttonMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#00FFFFFF"
-        android:focusable="true"
         android:clickable="true"
+        android:focusable="true"
+        android:minWidth="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.96"
         app:layout_constraintStart_toEndOf="@id/header_book4u"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_round_menu_24" />
+        app:srcCompat="@drawable/ic_round_menu_24"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

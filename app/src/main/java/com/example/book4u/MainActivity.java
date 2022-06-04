@@ -18,8 +18,8 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
-        Button buttonTeste = findViewById(R.id.buttonTeste);
-        buttonTeste.setOnClickListener(new View.OnClickListener() {
+        Button btnMenu = findViewById(R.id.buttonTeste);
+        btnMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
