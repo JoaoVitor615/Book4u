@@ -6,16 +6,62 @@
     android:layout_height="match_parent"
     tools:context=".SplashScreen">
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="146dp"
-        android:layout_height="22dp"
-        android:adjustViewBounds="false"
-        android:scaleType="centerInside"
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.42000002"
-        app:srcCompat="@drawable/book4u__2_" />
+        app:layout_constraintVertical_bias="0.41000003">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="190dp"
+            android:layout_height="55dp"
+            android:adjustViewBounds="false"
+            android:contentDescription="@string/book4u"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/book4u__2_" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:layout_marginTop="15dp"
+            android:contentDescription="@string/livro"
+            app:srcCompat="@drawable/imagem_livro" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.96">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/from"
+            android:textAlignment="center"
+            android:textColor="@color/ColorSecondaryText"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="25dp"
+            android:contentDescription="@string/b4"
+            android:layout_marginTop="5dp"
+            app:srcCompat="@drawable/b4" />
+    </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

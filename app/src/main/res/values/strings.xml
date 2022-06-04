@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Book4u</string>
     <string name="share_now">Share Now</string>
+    <string name="from">from</string>
+    <string name="book4u">Book4U</string>
+    <string name="livro">LIVRO</string>
+    <string name="b4">B4</string>
+    <string name="explorar">Explorar</string>
+    <string name="categorias">categorias</string>
 </resources>
