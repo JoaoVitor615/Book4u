@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="ColorPrimary">#2196F3</color>
-    <color name="ColorPrimaryDark">#FFFFFF</color>
+    <color name="ColorPrimaryDark">#121212</color>
     <color name="ColorAccent">#FF5252</color>
     <color name="ColorPrimaryText">#212121</color>
     <color name="ColorSecondaryText">#CCCCCC</color>
     <color name="ColorWhite">#FFFFFF</color>
-    <color name="ColorDivider">#ECECEC</color>
+    <color name="ColorDivider">#DDDDDD</color>
+    <color name="StatusBar">#121212</color>
+
 
 
 </resources>
