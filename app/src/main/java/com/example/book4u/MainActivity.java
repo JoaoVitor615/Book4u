@@ -2,6 +2,8 @@ package com.example.book4u;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,9 +22,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.fragment_header);
         setContentView(R.layout.activity_main);
 
-        HeaderFragment fragment = new HeaderFragment();
-
-
         Button btnMenu = findViewById(R.id.buttonTeste);
         btnMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,13 +35,17 @@ public class MainActivity extends AppCompatActivity {
                                 findViewById(R.id.bottomSheetContainer)
                         );
 
+                bottomSheetView.findViewById(R.id.layoutBusca).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent user = new Intent(getApplicationContext(), SearchActivity.class);
+                        startActivity(user);
+
+                    }
+                });
                 bottomSheetDialog.setContentView(bottomSheetView);
                 bottomSheetDialog.show();
             }
         });
-
-
-
-
     }
 }

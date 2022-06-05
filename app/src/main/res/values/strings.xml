@@ -13,4 +13,7 @@
     <string name="autores">Autores</string>
     <string name="lancamentos">Lançamentos</string>
     <string name="botao_menu">Botão Menu</string>
+    <string name="buscar_livros">Buscar livros</string>
+    <string name="pesquisar">Pesquisar</string>
+    <string name="voltar">voltar</string>
 </resources>

@@ -8,6 +8,10 @@
     <color name="ColorWhite">#FFFFFF</color>
     <color name="ColorDivider">#DDDDDD</color>
     <color name="StatusBar">#121212</color>
+    <color name="Gray">#ECECEC</color>
+    <color name="DarkGray">#838383</color>
+    <color name="Rosa">#F801BD</color>
+    <color name="Azul">#0F54E8</color>
 
 
 
