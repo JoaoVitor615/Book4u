@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="ColorPrimary">#2196F3</color>
+    <color name="ColorPrimary">#9022D5</color>
     <color name="ColorPrimaryDark">#121212</color>
     <color name="ColorAccent">#FF5252</color>
     <color name="ColorPrimaryText">#212121</color>
@@ -8,6 +8,8 @@
     <color name="ColorWhite">#FFFFFF</color>
     <color name="ColorDivider">#DDDDDD</color>
     <color name="StatusBar">#121212</color>
+    <color name="Black">#0E0E0E</color>
+    <color name="None">#00FFFFFF</color>
     <color name="Gray">#ECECEC</color>
     <color name="DarkGray">#838383</color>
     <color name="Rosa">#F801BD</color>
