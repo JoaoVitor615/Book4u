@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bottom_sheet_background"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingBottom="10dp">
 
 
     <ImageView
@@ -62,7 +63,7 @@
             android:layout_height="25dp"
             android:layout_marginStart="10dp"
             android:contentDescription="@string/categorias"
-            android:src="@drawable/categoria"/>
+            android:src="@drawable/categorias"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -91,14 +92,14 @@
             android:layout_height="25dp"
             android:layout_marginStart="10dp"
             android:contentDescription="@string/explorar"
-            android:src="@drawable/bussola"/>
+            android:src="@drawable/salvar_outlined"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="25dp"
-            android:text="@string/explorar"
+            android:text="@string/livros_salvos"
             android:textColor="@color/ColorPrimaryText"
             android:textSize="18sp"/>
 
@@ -121,14 +122,43 @@
             android:layout_height="25dp"
             android:layout_marginStart="10dp"
             android:contentDescription="@string/categorias"
-            android:src="@drawable/categoria"/>
+            android:src="@drawable/autores"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="25dp"
-            android:text="@string/categorias"
+            android:text="@string/autores"
+            android:textColor="@color/ColorPrimaryText"
+            android:textSize="18sp"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="10dp"
+            android:contentDescription="@string/categorias"
+            android:src="@drawable/lancamentos"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="25dp"
+            android:text="@string/lancamentos"
             android:textColor="@color/ColorPrimaryText"
             android:textSize="18sp"/>
 

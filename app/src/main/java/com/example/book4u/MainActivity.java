@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -16,7 +17,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
+        setContentView(R.layout.fragment_header);
         setContentView(R.layout.activity_main);
+
+        HeaderFragment fragment = new HeaderFragment();
+
 
         Button btnMenu = findViewById(R.id.buttonTeste);
         btnMenu.setOnClickListener(new View.OnClickListener() {
@@ -28,13 +33,16 @@ public class MainActivity extends AppCompatActivity {
                 View bottomSheetView = LayoutInflater.from(getApplicationContext())
                         .inflate(
                                 R.layout.layout_bottom_sheet,
-                                (LinearLayout)findViewById(R.id.bottomSheetContainer)
+                                findViewById(R.id.bottomSheetContainer)
                         );
 
                 bottomSheetDialog.setContentView(bottomSheetView);
                 bottomSheetDialog.show();
             }
         });
+
+
+
 
     }
 }

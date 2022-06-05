@@ -6,7 +6,11 @@
     <string name="livro">LIVRO</string>
     <string name="b4">B4</string>
     <string name="explorar">Explorar</string>
-    <string name="categorias">categorias</string>
+    <string name="categorias">Categorias</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="livros_salvos">Livros salvos</string>
+    <string name="autores">Autores</string>
+    <string name="lancamentos">Lançamentos</string>
+    <string name="botao_menu">Botão Menu</string>
 </resources>
