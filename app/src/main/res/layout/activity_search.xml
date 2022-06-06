@@ -17,6 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:background="@color/ColorWhite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -32,13 +33,14 @@
             tools:ignore="TouchTargetSizeCheck" />
 
         <TextView
-            android:layout_marginStart="20sp"
+            android:layout_marginStart="10sp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/buscar_livros"
             android:textColor="@color/ColorPrimaryText"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:textStyle="bold"/>
         </LinearLayout>
 
         <View
@@ -47,7 +49,7 @@
             android:background="@drawable/blue_pink_line"/>
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/inputLivro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
@@ -58,7 +60,7 @@
             android:drawablePadding="5dp"
             android:ems="10"
             android:hint="@string/pesquisar"
-            android:inputType="textPersonName"
+            android:inputType="text"
             android:paddingStart="12dp"
             android:paddingTop="8dp"
             android:paddingEnd="12dp"
@@ -66,9 +68,85 @@
             android:textColorHint="@color/DarkGray"
             tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
+        <Button
+            android:id="@+id/btnBusca"
+            android:onClick="buscaLivros"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="33dp"
+            android:text="@string/pesquisar"
+            android:background="@drawable/blue_rounded"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:textColor="@color/ColorWhite"
+            android:textAllCaps="false"/>
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="40dp"
+                android:padding="15dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Resultados"
+                    android:textColor="@color/Black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/resultados" />
+
+            </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:orientation="vertical"
+            android:background="@drawable/gray_background"
+            >
+
+            <TextView
+                android:id="@+id/tituloText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Título do Livro"
+                android:textColor="@color/Black"
+                android:textSize="17sp"
+                android:paddingStart="12dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="12dp"/>
+
+            <TextView
+                android:id="@+id/autorText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/gray_background"
+                android:text="Autor"
+                android:textColor="@color/DarkGray"
+                android:textSize="12sp"
+                android:paddingStart="12dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="8dp"
+                android:paddingEnd="12dp"/>
+        </LinearLayout>
     </LinearLayout>
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
