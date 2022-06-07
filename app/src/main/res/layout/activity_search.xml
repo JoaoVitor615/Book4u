@@ -119,29 +119,72 @@
             android:background="@drawable/gray_background"
             >
 
-            <TextView
-                android:id="@+id/tituloText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Título do Livro"
-                android:textColor="@color/Black"
-                android:textSize="17sp"
-                android:paddingStart="12dp"
-                android:paddingTop="8dp"
-                android:paddingEnd="12dp"/>
-
-            <TextView
-                android:id="@+id/autorText"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/gray_background"
-                android:text="Autor"
-                android:textColor="@color/DarkGray"
-                android:textSize="12sp"
-                android:paddingStart="12dp"
-                android:paddingTop="4dp"
-                android:paddingBottom="8dp"
-                android:paddingEnd="12dp"/>
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tituloText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:hint="Título do Livro"
+                    android:textColor="@color/Black"
+                    android:textSize="17sp"
+                    android:paddingStart="12dp"
+                    android:paddingTop="8dp"
+                    android:paddingEnd="12dp"/>
+
+                <TextView
+                    android:id="@+id/autorText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:hint="Autor"
+                    android:textColor="@color/DarkGray"
+                    android:textSize="12sp"
+                    android:paddingStart="12dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="8dp"
+                    android:paddingEnd="12dp"/>
+
+                <TextView
+                    android:id="@+id/pagText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:hint="N° de Páginas"
+                    android:textColor="@color/DarkGray"
+                    android:textSize="12sp"
+                    android:paddingStart="12dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="2dp"
+                    android:paddingEnd="12dp"/>
+
+                <TextView
+                    android:id="@+id/catText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:hint="Categoria"
+                    android:textColor="@color/DarkGray"
+                    android:textSize="12sp"
+                    android:paddingStart="12dp"
+                    android:paddingBottom="8dp"
+                    android:paddingEnd="12dp"/>
+
+
+                <Button
+                    android:id="@+id/btnLink"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ver mais"
+                    android:layout_marginTop="8dp"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:textColor="@color/DarkGray"/>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
