@@ -151,6 +151,7 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
                 }
                 i++;
             }
+
             if (titulo != null && autor != null) {
 
                 nomeTitulo.setText(titulo);
@@ -158,17 +159,17 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
                 autor = autor.replaceAll("\\[", "");
                 autor = autor.replaceAll("\\]", "");
                 autor = autor.replaceAll("\\\"", "");
-                nomeAutor.setText(autor);
+                //nomeAutor.setText(autor);
 
-                nomePag.setText("N° de páginas: " + pag);
+                //nomePag.setText("N° de páginas: " + pag);
 
                 if(cat != null){
                     cat = cat.replaceAll("\\[", "");
                     cat = cat.replaceAll("\\]", "");
                     cat = cat.replaceAll("\\\"", "");
-                    nomeCat.setText("Categoria: " + cat);
+                   // nomeCat.setText("Categoria: " + cat);
                 } else {
-                    nomeCat.setText("Categoria: Não Identificado");
+                   // nomeCat.setText("Categoria: Não Identificado");
                 }
 
                 stringLink = link;
