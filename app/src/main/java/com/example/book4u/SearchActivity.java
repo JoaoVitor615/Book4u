@@ -39,8 +39,8 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
     public String stringLink = null;
 
     Livro livro = new Livro();
-    BancoDeDados db=new BancoDeDados(this);
-
+    BancoController crud = new BancoController(getBaseContext());
+    String resultado;
     ImageButton btnVoltar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +83,11 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
         startActivity(new Intent(Intent.ACTION_VIEW, uri));
     }
 
+
+
     public void buscaLivros(View view) {
+
+
         String queryString = nomeLivro.getText().toString();
         InputMethodManager inputManager = (InputMethodManager)
                 getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -132,7 +136,6 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
             JSONObject jsonObject = new JSONObject(data);
             JSONArray itemsArray = jsonObject.getJSONArray("items");
             int i = 0;
-            String id = null;
             String titulo = null;
             String autor = null;
             String pag = null;
@@ -145,7 +148,7 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
                 JSONObject volumeInfo = book.getJSONObject("volumeInfo");
 
                 try {
-                    id = book.getString("id");
+
                     titulo = volumeInfo.getString("title");
                     autor = volumeInfo.getString("authors");
                     pag = volumeInfo.getString("pageCount");
@@ -161,7 +164,6 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
             if (titulo != null && autor != null) {
 
 
-                livro.setId(id);
                 livro.setTitulo(titulo);
                 livro.setAutor(autor);
                 livro.setPagina(pag);
@@ -170,7 +172,8 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
 
 
 
-//                nomeTitulo.setText(titulo);
+                nomeTitulo.setText(titulo);
+                resultado = crud.addLivro(livro);
 //
 //                autor = autor.replaceAll("\\[", "");
 //                autor = autor.replaceAll("\\]", "");
@@ -206,6 +209,8 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
             e.printStackTrace();
         }
     }
+
+
 
     @Override
     public void onLoaderReset(@NonNull Loader<String> loader) {
