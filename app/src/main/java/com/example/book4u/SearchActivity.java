@@ -159,7 +159,7 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
             }
 
             if (titulo != null && autor != null) {
-                String resultado = db.addLivro(livro);
+
 
                 livro.setId(id);
                 livro.setTitulo(titulo);
@@ -168,9 +168,8 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
                 livro.setCategoria(cat);
                 livro.setLink(link);
 
-                db.addLivro(livro);
 
-                Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
+
 //                nomeTitulo.setText(titulo);
 //
 //                autor = autor.replaceAll("\\[", "");

@@ -35,32 +35,5 @@ public class BancoDeDados extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
     }
-
-    public String addLivro(Livro livro){
-        long resultado;
-        //estancia para escrita no banco
-        SQLiteDatabase db=this.getWritableDatabase();
-
-        ContentValues values= new ContentValues();
-        values.put(Coluna_Id, livro.getId());
-        values.put(Coluna_Titulo, livro.getTitulo());
-        values.put(Coluna_Autor, livro.getAutor());
-        values.put(Coluna_Pag, livro.getPagina());
-        values.put(Coluna_Cat, livro.getCategoria());
-        values.put(Coluna_Link, livro.getLink());
-
-        //inseri no banco
-        resultado = db.insert(Tabela_Livro, null, values);
-        db.close();
-
-        if (resultado ==-1) {
-            return "Erro ao inserir registro";
-        }else{
-            return "Registro Inserido com sucesso";
-        }
-    }
-
-
 }
