@@ -23,14 +23,14 @@ public class BancoDeDados extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String Criacao_tabelaUser = "create table " + Tabela_Livro + "( "
+        String CriaLivro = "create table " + Tabela_Livro + "( "
                 + Coluna_Id + " text primary key, "
                 + Coluna_Titulo + " text not null, "
                 + Coluna_Autor + " text not null, "
                 + Coluna_Pag + " text, "
                 + Coluna_Cat + " text, "
                 + Coluna_Link + " text);";
-        db.execSQL(Criacao_tabelaUser);
+        db.execSQL(CriaLivro);
     }
 
     @Override
@@ -38,7 +38,8 @@ public class BancoDeDados extends SQLiteOpenHelper {
 
     }
 
-    void addUser(Livro livro){
+    public String addLivro(Livro livro){
+        long resultado;
         //estancia para escrita no banco
         SQLiteDatabase db=this.getWritableDatabase();
 
@@ -51,8 +52,14 @@ public class BancoDeDados extends SQLiteOpenHelper {
         values.put(Coluna_Link, livro.getLink());
 
         //inseri no banco
-        db.insert(Tabela_Livro, null, values);
+        resultado = db.insert(Tabela_Livro, null, values);
         db.close();
+
+        if (resultado ==-1) {
+            return "Erro ao inserir registro";
+        }else{
+            return "Registro Inserido com sucesso";
+        }
     }
 
 

@@ -28,6 +28,7 @@ import org.json.JSONObject;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+
 public class SearchActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<String> {
     private EditText nomeLivro;
     private TextView nomeTitulo;
@@ -36,6 +37,9 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
     private TextView nomeCat;
     private Button buttonLink;
     public String stringLink = null;
+
+    Livro livro = new Livro();
+    BancoDeDados db=new BancoDeDados(this);
 
     ImageButton btnVoltar;
     @Override
@@ -128,6 +132,7 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
             JSONObject jsonObject = new JSONObject(data);
             JSONArray itemsArray = jsonObject.getJSONArray("items");
             int i = 0;
+            String id = null;
             String titulo = null;
             String autor = null;
             String pag = null;
@@ -140,6 +145,7 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
                 JSONObject volumeInfo = book.getJSONObject("volumeInfo");
 
                 try {
+                    id = book.getString("id");
                     titulo = volumeInfo.getString("title");
                     autor = volumeInfo.getString("authors");
                     pag = volumeInfo.getString("pageCount");
@@ -153,26 +159,37 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
             }
 
             if (titulo != null && autor != null) {
+                String resultado = db.addLivro(livro);
 
-                nomeTitulo.setText(titulo);
+                livro.setId(id);
+                livro.setTitulo(titulo);
+                livro.setAutor(autor);
+                livro.setPagina(pag);
+                livro.setCategoria(cat);
+                livro.setLink(link);
 
-                autor = autor.replaceAll("\\[", "");
-                autor = autor.replaceAll("\\]", "");
-                autor = autor.replaceAll("\\\"", "");
-                //nomeAutor.setText(autor);
+                db.addLivro(livro);
 
-                //nomePag.setText("N° de páginas: " + pag);
-
-                if(cat != null){
-                    cat = cat.replaceAll("\\[", "");
-                    cat = cat.replaceAll("\\]", "");
-                    cat = cat.replaceAll("\\\"", "");
-                   // nomeCat.setText("Categoria: " + cat);
-                } else {
-                   // nomeCat.setText("Categoria: Não Identificado");
-                }
-
-                stringLink = link;
+                Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
+//                nomeTitulo.setText(titulo);
+//
+//                autor = autor.replaceAll("\\[", "");
+//                autor = autor.replaceAll("\\]", "");
+//                autor = autor.replaceAll("\\\"", "");
+//                //nomeAutor.setText(autor);
+//
+//                //nomePag.setText("N° de páginas: " + pag);
+//
+//                if(cat != null){
+//                    cat = cat.replaceAll("\\[", "");
+//                    cat = cat.replaceAll("\\]", "");
+//                    cat = cat.replaceAll("\\\"", "");
+//                   // nomeCat.setText("Categoria: " + cat);
+//                } else {
+//                   // nomeCat.setText("Categoria: Não Identificado");
+//                }
+//
+//                stringLink = link;
 
             } else {
                 nomeTitulo.setText(R.string.sem_resultado);
@@ -194,4 +211,6 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
     @Override
     public void onLoaderReset(@NonNull Loader<String> loader) {
     }
+
+
 }
