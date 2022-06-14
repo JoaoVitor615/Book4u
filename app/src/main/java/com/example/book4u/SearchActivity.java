@@ -8,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -36,6 +37,7 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
     private TextView nomePag;
     private TextView nomeCat;
     private Button buttonLink;
+    private TextView nomePreco;
     public String stringLink = null;
 
     Livro livro = new Livro();
@@ -53,6 +55,7 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
         nomePag = findViewById(R.id.pagText);
         nomeCat = findViewById(R.id.catText);
         buttonLink = findViewById(R.id.btnLink);
+        nomePreco = findViewById(R.id.priceText);
         if (getSupportLoaderManager().getLoader(0) != null) {
             getSupportLoaderManager().initLoader(0, null, this);
         }
@@ -138,11 +141,15 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
             String pag = null;
             String cat = null;
             String link = null;
+            String preco = null;
+
 
             while (i < itemsArray.length() &&
-                    (autor == null && titulo == null)) {
+                    (titulo == null)) {
                 JSONObject book = itemsArray.getJSONObject(i);
                 JSONObject volumeInfo = book.getJSONObject("volumeInfo");
+                JSONObject saleInfo = book.getJSONObject("saleInfo");
+                JSONObject listPrice = saleInfo.getJSONObject("listPrice");
 
                 try {
                     id = book.getString("id");
@@ -151,6 +158,7 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
                     pag = volumeInfo.getString("pageCount");
                     cat = volumeInfo.getString("categories");
                     link = volumeInfo.getString("previewLink");
+                    preco = listPrice.getString("amount");
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -158,38 +166,54 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
                 i++;
             }
 
-            if (titulo != null && autor != null) {
-                String resultado = db.addLivro(livro);
+            if (titulo != null) {
 
                 livro.setId(id);
                 livro.setTitulo(titulo);
-                livro.setAutor(autor);
-                livro.setPagina(pag);
-                livro.setCategoria(cat);
-                livro.setLink(link);
 
-                db.addLivro(livro);
+                Livro livro = db.buscaLivro(id);
 
-                Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
-//                nomeTitulo.setText(titulo);
-//
-//                autor = autor.replaceAll("\\[", "");
-//                autor = autor.replaceAll("\\]", "");
-//                autor = autor.replaceAll("\\\"", "");
-//                //nomeAutor.setText(autor);
-//
-//                //nomePag.setText("N° de páginas: " + pag);
-//
-//                if(cat != null){
-//                    cat = cat.replaceAll("\\[", "");
-//                    cat = cat.replaceAll("\\]", "");
-//                    cat = cat.replaceAll("\\\"", "");
-//                   // nomeCat.setText("Categoria: " + cat);
-//                } else {
-//                   // nomeCat.setText("Categoria: Não Identificado");
-//                }
-//
-//                stringLink = link;
+                //se não existir no banco cadastra
+                if (livro.getId().equals("naoExiste")) {
+                    //insert
+                    livro.setId(id);
+                    livro.setTitulo(titulo);
+                    db.addLivro(livro);
+
+                    Toast.makeText(getApplicationContext(),"ainda não cadastrado", Toast.LENGTH_SHORT).show();
+
+                }
+                //se ja existir abre a outra tela direto
+                else {
+                    Toast.makeText(getApplicationContext(),"ja existe", Toast.LENGTH_SHORT).show();
+                }
+
+                nomeTitulo.setText(livro.getTitulo());
+
+                autor = autor.replaceAll("\\[", "");
+                autor = autor.replaceAll("\\]", "");
+                autor = autor.replaceAll("\\\"", "");
+                nomeAutor.setText(autor);
+
+                if(cat != null){
+                    cat = cat.replaceAll("\\[", "");
+                    cat = cat.replaceAll("\\]", "");
+                    cat = cat.replaceAll("\\\"", "");
+                    nomeCat.setText("Categoria: " + cat);
+                } else {
+                    nomeCat.setText("Categoria: Não Identificado");
+                }
+
+                if(pag != null){
+                    nomePag.setText("N° de Páginas: " + pag);
+                } else {
+                    nomePag.setText("N° de Páginas: Não identificado");
+                }
+
+                stringLink = link;
+
+                preco = preco.replaceAll("\\.",",");
+                nomePreco.setText("$" + preco);
 
             } else {
                 nomeTitulo.setText(R.string.sem_resultado);

@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".SearchActivity">
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -170,6 +172,19 @@
                     android:hint="Categoria"
                     android:textColor="@color/DarkGray"
                     android:textSize="12sp"
+                    android:paddingStart="12dp"
+                    android:paddingBottom="8dp"
+                    android:paddingEnd="12dp"/>
+
+                <TextView
+                    android:id="@+id/priceText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text=""
+                    android:hint="Valor"
+                    android:textColor="@color/Black"
+                    android:textSize="18sp"
                     android:paddingStart="12dp"
                     android:paddingBottom="8dp"
                     android:paddingEnd="12dp"/>
