@@ -22,4 +22,6 @@
     <string name="sem_conexao">Sem conexão</string>
     <string name="sem_resultado">Nenhum resultado encontrado</string>
     <string name="chave">[</string>
+    <string name="meu_perfil">Meu perfil</string>
+    <string name="lgoin">Login</string>
 </resources>
