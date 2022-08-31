@@ -25,4 +25,6 @@
     <string name="meu_perfil">Meu perfil</string>
     <string name="lgoin">Login</string>
     <string name="senha">Senha</string>
+    <string name="cadastro">Cadastro</string>
+    <string name="nome">Nome</string>
 </resources>
