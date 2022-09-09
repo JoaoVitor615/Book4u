@@ -151,6 +151,7 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
                 JSONObject saleInfo = book.getJSONObject("saleInfo");
                 JSONObject listPrice = saleInfo.getJSONObject("listPrice");
 
+
                 try {
                     id = book.getString("id");
                     titulo = volumeInfo.getString("title");

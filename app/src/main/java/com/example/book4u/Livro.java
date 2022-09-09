@@ -31,7 +31,4 @@ public class Livro {
         this.titulo = titulo;
     }
 
-
-
-
 }
