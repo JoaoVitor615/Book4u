@@ -43,6 +43,16 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
+
+                bottomSheetView.findViewById(R.id.layoutPerfil).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent perfil = new Intent(getApplicationContext(), ProfileActivity.class);
+                        startActivity(perfil);
+
+                    }
+                });
+
                 bottomSheetDialog.setContentView(bottomSheetView);
                 bottomSheetDialog.show();
             }
