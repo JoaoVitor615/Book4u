@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnLogin;
     private Usuario usuario;
     private UsuarioDAO usuarioDAO;
+    private Button btnCadastro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,15 @@ public class LoginActivity extends AppCompatActivity {
         userLogin = findViewById(R.id.userlogin);
         userSenha = findViewById(R.id.usersenha);
         btnLogin = findViewById(R.id.btnlogin);
+        btnCadastro = findViewById(R.id.cadastro);
+
+        btnCadastro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent main = new Intent(getApplicationContext(), Cadastro.class);
+                startActivity(main);
+            }
+        });
 
         btnLogin.setOnClickListener(v ->{
             String login = String.valueOf(userLogin.getText());

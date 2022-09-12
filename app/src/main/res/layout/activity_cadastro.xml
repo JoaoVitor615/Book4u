@@ -15,29 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/b4"
-        android:layout_marginTop="25dp"/>
-
-    <EditText
-        android:id="@+id/userlogin2"
-        android:layout_width="320dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/gray_background"
-        android:drawableStart="@drawable/login_icon"
-        android:drawablePadding="5dp"
-        android:ems="10"
-        android:hint="@string/nome"
-        android:inputType="textEmailAddress"
-        android:paddingStart="12dp"
-        android:paddingTop="8dp"
-        android:paddingEnd="12dp"
-        android:paddingBottom="8dp"
-        android:textColorHint="@color/DarkGray"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+        android:layout_marginTop="30dp"/>
 
     <TextView
         android:id="@+id/textView3"
@@ -45,8 +23,112 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/cadastro"
+        android:textSize="24sp"
+        android:fontFamily="@font/alata"
         android:textColor="@color/Black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Preencha os campos abaixo:"
+        android:textSize="18sp"
+        android:fontFamily="@font/alata"
+        android:textColor="@color/DarkGray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4">
+
+        <EditText
+            android:id="@+id/nome"
+            android:layout_width="350dp"
+            android:layout_height="45dp"
+            android:background="@drawable/gray_background"
+            android:drawableStart="@drawable/login_icon"
+            android:drawablePadding="5dp"
+            android:ems="10"
+            android:hint="@string/nome"
+            android:inputType="text"
+            android:paddingStart="12dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="8dp"
+            android:textColorHint="@color/DarkGray" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="350dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/gray_background"
+            android:drawableStart="@drawable/email"
+            android:drawablePadding="5dp"
+            android:ems="10"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:paddingStart="12dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="8dp"
+            android:textColorHint="@color/DarkGray" />
+
+        <EditText
+            android:id="@+id/senha"
+            android:layout_width="350dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/gray_background"
+            android:drawableStart="@drawable/senha"
+            android:drawablePadding="5dp"
+            android:ems="10"
+            android:hint="@string/senha"
+            android:inputType="textEmailAddress"
+            android:paddingStart="12dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="8dp"
+            android:textColorHint="@color/DarkGray" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btncadastrar"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/blue_rounded"
+        android:clickable="true"
+        android:drawableEnd="@drawable/check"
+        android:drawablePadding="10dp"
+        android:focusable="true"
+        android:fontFamily="@font/alata"
+        android:text="Concluir"
+        android:textAllCaps="false"
+        android:textColor="@color/ColorWhite"
+        android:paddingEnd="15dp"
+        android:paddingStart="20dp"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        tools:ignore="HardcodedText" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

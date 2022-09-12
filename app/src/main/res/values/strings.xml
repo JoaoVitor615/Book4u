@@ -27,4 +27,6 @@
     <string name="senha">Senha</string>
     <string name="cadastro">Cadastro</string>
     <string name="nome">Nome</string>
+    <string name="email">Email</string>
+    <string name="cirar_conta">Criar conta</string>
 </resources>
