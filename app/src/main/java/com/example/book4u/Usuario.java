@@ -2,7 +2,9 @@ package com.example.book4u;
 
 import android.content.Context;
 
-public class Usuario {
+import java.io.Serializable;
+
+public class Usuario implements Serializable {
     private String Nome, Login, Senha;
     private int Id;
 
@@ -13,6 +15,12 @@ public class Usuario {
         Nome = nome;
         Login = login;
         Senha = senha;
+    }
+
+    public Usuario(String login, String senha, String nome){
+        Login = login;
+        Senha = senha;
+        Nome = nome;
     }
 
     public String getNome() {

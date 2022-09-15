@@ -18,7 +18,7 @@
         android:layout_marginTop="30dp"/>
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/txtTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -31,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/txtCampos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -41,7 +41,7 @@
         android:textColor="@color/DarkGray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/txtTitulo" />
 
 
     <LinearLayout
@@ -53,10 +53,10 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4">
+        app:layout_constraintTop_toBottomOf="@+id/txtCampos">
 
         <EditText
-            android:id="@+id/nome"
+            android:id="@+id/txtNome"
             android:layout_width="350dp"
             android:layout_height="45dp"
             android:background="@drawable/gray_background"
@@ -72,7 +72,7 @@
             android:textColorHint="@color/DarkGray" />
 
         <EditText
-            android:id="@+id/email"
+            android:id="@+id/txtLogin"
             android:layout_width="350dp"
             android:layout_height="45dp"
             android:layout_marginTop="20dp"
@@ -89,7 +89,7 @@
             android:textColorHint="@color/DarkGray" />
 
         <EditText
-            android:id="@+id/senha"
+            android:id="@+id/txtSenha"
             android:layout_width="350dp"
             android:layout_height="45dp"
             android:layout_marginTop="20dp"
@@ -108,7 +108,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btncadastrar"
+        android:id="@+id/btnConcluir"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_gravity="center"

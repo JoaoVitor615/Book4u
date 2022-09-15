@@ -49,6 +49,17 @@ public class UsuarioDAO {
         return usuario;
     }
 
+    public long updateUsuario(Usuario usuario){
+        ContentValues values = new ContentValues();
+
+        values.put("idUsuario", usuario.getId());
+        values.put("login", usuario.getLogin());
+        values.put("senha", usuario.getSenha());
+        values.put("nome", usuario.getNome());
+
+        return banco.update("tbUsuario", values, "idUsuario = ?", new String[]{String.valueOf(usuario.getId())});
+    }
+
     public Boolean verificarLogin(String login, String senha){
         Cursor cursor = banco.rawQuery("SELECT * FROM tbUsuario WHERE login = ? AND senha = ?", new String[] {login, senha});
 

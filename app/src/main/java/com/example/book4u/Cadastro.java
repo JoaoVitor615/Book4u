@@ -4,15 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Cadastro extends AppCompatActivity {
 
-    Button btnCadastrar;
-    EditText txtNome, txtEmail, txtSenha;
-    String ClienteNome, ClienteEmail, ClienteSenha;
+    Button btnConcluir;
+    TextView txtTitulo;
+    EditText txtNome, txtLogin, txtSenha;
+    String UsuarioNome, UsuarioLogin, UsuarioSenha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,27 +22,65 @@ public class Cadastro extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_cadastro);
 
-        btnCadastrar = findViewById(R.id.btncadastrar);
-        txtNome = findViewById(R.id.nome);
-        txtEmail = findViewById(R.id.email);
-        txtSenha = findViewById(R.id.senha);
+        btnConcluir = findViewById(R.id.btnConcluir);
+        txtNome = findViewById(R.id.txtNome);
+        txtLogin = findViewById(R.id.txtLogin);
+        txtSenha = findViewById(R.id.txtSenha);
+        txtTitulo = findViewById(R.id.txtTitulo);
 
-        btnCadastrar.setOnClickListener(v -> {
-            ClienteNome = txtNome.getText().toString();
-            ClienteEmail = txtEmail.getText().toString();
-            ClienteSenha = txtSenha.getText().toString();
+        Intent intent = getIntent();
 
-            Usuario usuario = new Usuario( 2, ClienteNome, ClienteEmail, ClienteSenha);
+        // EDITAR
+        if (intent.hasExtra("Usuario")) {
+            txtTitulo.setText(R.string.editar);
 
-            UsuarioDAO usuarioDAO = new UsuarioDAO(Cadastro.this);
+            Usuario usuario = ((Usuario) intent.getSerializableExtra("Usuario"));
 
-            try {
-                usuarioDAO.cadastrarUsuario(usuario);
-                Toast.makeText(getApplicationContext(), "Cadastro efetuado com sucesso", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getBaseContext(), LoginActivity.class));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+            txtNome.setText(usuario.getNome());
+            txtLogin.setText(usuario.getLogin());
+
+            btnConcluir.setOnClickListener(v -> {
+                UsuarioNome = txtNome.getText().toString();
+                UsuarioLogin = txtLogin.getText().toString();
+                UsuarioSenha = txtSenha.getText().toString();
+
+                Usuario usuarioUpdate = new Usuario(
+                        usuario.getId(),
+                        UsuarioLogin,
+                        UsuarioSenha,
+                        UsuarioNome);
+
+                UsuarioDAO usuarioDAO = new UsuarioDAO(Cadastro.this);
+
+                try{
+                    usuarioDAO.updateUsuario(usuarioUpdate);
+                    Toast.makeText(getApplicationContext(), "Alteração efetuada.", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getBaseContext(), ProfileActivity.class));
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+            });
+        }
+        // CADASTRAR
+        else{
+            btnConcluir.setOnClickListener(v -> {
+                UsuarioNome = txtNome.getText().toString();
+                UsuarioLogin = txtLogin.getText().toString();
+                UsuarioSenha = txtSenha.getText().toString();
+
+                Usuario usuario = new Usuario(UsuarioLogin, UsuarioSenha, UsuarioNome);
+
+                UsuarioDAO usuarioDAO = new UsuarioDAO(Cadastro.this);
+
+                try {
+                    usuarioDAO.cadastrarUsuario(usuario);
+                    Toast.makeText(getApplicationContext(), "Cadastro efetuado com sucesso", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getBaseContext(), LoginActivity.class));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        }
     }
 }

@@ -6,52 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".ProfileActivity">
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:background="@drawable/circle_gray"
-        android:padding="10dp"
-        android:layout_marginTop="80dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/login"
-        tools:layout_editor_absoluteX="95dp"
-        tools:layout_editor_absoluteY="119dp" />
-
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/txtUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
         android:text="Nome do Usuário"
         android:textColor="@color/Black"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
-
-    <Button
-        android:id="@+id/editar"
-        android:layout_width="120dp"
-        android:layout_height="38dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/blue_rounded"
-        android:clickable="true"
-        android:focusable="true"
-        android:text="Editar"
-        android:textAllCaps="false"
-        android:textColor="@color/ColorWhite"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        tools:ignore="HardcodedText" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="80dp"
+        app:srcCompat="@drawable/login"
+        tools:layout_editor_absoluteX="95dp"
+        tools:layout_editor_absoluteY="119dp"/>
 
     <EditText
-        android:id="@+id/nomelogin"
+        android:id="@+id/edtxtLogin"
         android:layout_width="320dp"
         android:layout_height="38dp"
         android:layout_marginTop="40dp"
@@ -68,11 +40,11 @@
         android:textColorHint="@color/DarkGray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editar"
+        app:layout_constraintTop_toBottomOf="@+id/txtUsuario"
         tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
-        android:id="@+id/nomesenha"
+        android:id="@+id/edtxtSenha"
         android:layout_width="320dp"
         android:layout_height="38dp"
         android:layout_marginTop="20dp"
@@ -81,7 +53,7 @@
         android:drawablePadding="5dp"
         android:ems="10"
         android:enabled="false"
-        android:hint="123456"
+        android:hint="******"
         android:paddingStart="12dp"
         android:paddingTop="8dp"
         android:paddingEnd="12dp"
@@ -89,8 +61,42 @@
         android:textColorHint="@color/DarkGray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nomelogin"
+        app:layout_constraintTop_toBottomOf="@+id/edtxtLogin"
         tools:ignore="TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/btnEditar"
+        android:layout_width="120dp"
+        android:layout_height="38dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/blue_rounded"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="Editar"
+        android:textAllCaps="false"
+        android:textColor="@color/ColorWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtxtSenha"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/btnSair"
+        android:layout_width="120dp"
+        android:layout_height="38dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/blue_rounded"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="Sair"
+        android:textAllCaps="false"
+        android:textColor="@color/ColorWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnEditar"
+        tools:ignore="HardcodedText" />
 
     <ImageButton
         android:id="@+id/close"
