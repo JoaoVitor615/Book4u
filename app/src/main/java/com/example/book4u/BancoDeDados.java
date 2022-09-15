@@ -23,7 +23,7 @@ public class BancoDeDados extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CriaLivro = "create table " + Tabela_Livro + "( "
-                + Coluna_Id + " text primary key, "
+                + Coluna_Id + " text primary key AUTOINCREMENT NOT NULL, "
                 + Coluna_Titulo + " text not null);";
         db.execSQL(CriaLivro);
     }
