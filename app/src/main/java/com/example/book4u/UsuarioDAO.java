@@ -16,7 +16,6 @@ public class UsuarioDAO {
 
     public long cadastrarUsuario(Usuario usuario){
         ContentValues values = new ContentValues();
-        values.put("idUsuario", usuario.getId());
         values.put("login", usuario.getLogin());
         values.put("senha", usuario.getSenha());
         values.put("nome", usuario.getNome());
