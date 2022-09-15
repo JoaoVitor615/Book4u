@@ -30,13 +30,14 @@ public class Cadastro extends AppCompatActivity {
             ClienteEmail = txtEmail.getText().toString();
             ClienteSenha = txtSenha.getText().toString();
 
-            Usuario usuario = new Usuario( 1, ClienteNome, ClienteEmail, ClienteSenha);
+            Usuario usuario = new Usuario( 2, ClienteNome, ClienteEmail, ClienteSenha);
 
             UsuarioDAO usuarioDAO = new UsuarioDAO(Cadastro.this);
 
             try {
                 usuarioDAO.cadastrarUsuario(usuario);
                 Toast.makeText(getApplicationContext(), "Cadastro efetuado com sucesso", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getBaseContext(), LoginActivity.class));
             } catch (Exception e) {
                 e.printStackTrace();
             }
