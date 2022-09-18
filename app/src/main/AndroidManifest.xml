@@ -10,9 +10,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
-        android:label=""
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@mipmap/b4_icon"
+        android:label="Book4U"
+        android:roundIcon="@mipmap/b4_icon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Book4u"
         tools:targetApi="31">
