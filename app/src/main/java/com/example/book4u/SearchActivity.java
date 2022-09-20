@@ -1,5 +1,4 @@
 package com.example.book4u;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.app.LoaderManager;
 import android.content.Context;
@@ -8,7 +7,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -21,14 +19,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.widget.ImageButton;
 import android.widget.Toast;
-
 
 public class SearchActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<String> {
     private EditText nomeLivro;
@@ -37,11 +33,7 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
     private TextView nomePag;
     private TextView nomeCat;
     private Button buttonLink;
-    private TextView nomePreco;
     public String stringLink = null;
-
-    Livro livro = new Livro();
-    BancoDeDados db=new BancoDeDados(this);
 
     ImageButton btnVoltar;
     @Override
@@ -55,7 +47,6 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
         nomePag = findViewById(R.id.pagText);
         nomeCat = findViewById(R.id.catText);
         buttonLink = findViewById(R.id.btnLink);
-        nomePreco = findViewById(R.id.priceText);
         if (getSupportLoaderManager().getLoader(0) != null) {
             getSupportLoaderManager().initLoader(0, null, this);
         }
@@ -94,7 +85,6 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
             inputManager.hideSoftInputFromWindow(view.getWindowToken(),
                     InputMethodManager.HIDE_NOT_ALWAYS);
         }
-
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = null;
@@ -118,7 +108,6 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
             }
         }
     }
-
     @NonNull
     @Override
     public Loader<String> onCreateLoader(int id, @Nullable Bundle args) {
@@ -128,73 +117,45 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
         }
         return new LoadLivros(this, queryString);
     }
-
     @Override
     public void onLoadFinished(@NonNull Loader<String> loader, String data) {
         try {
             JSONObject jsonObject = new JSONObject(data);
             JSONArray itemsArray = jsonObject.getJSONArray("items");
             int i = 0;
-            String id = null;
             String titulo = null;
             String autor = null;
             String pag = null;
             String cat = null;
             String link = null;
-            String preco = null;
-
 
             while (i < itemsArray.length() &&
-                    (titulo == null)) {
+                    (autor == null && titulo == null)) {
                 JSONObject book = itemsArray.getJSONObject(i);
                 JSONObject volumeInfo = book.getJSONObject("volumeInfo");
-                JSONObject saleInfo = book.getJSONObject("saleInfo");
-                JSONObject listPrice = saleInfo.getJSONObject("listPrice");
-
 
                 try {
-                    id = book.getString("id");
                     titulo = volumeInfo.getString("title");
                     autor = volumeInfo.getString("authors");
                     pag = volumeInfo.getString("pageCount");
                     cat = volumeInfo.getString("categories");
                     link = volumeInfo.getString("previewLink");
-                    preco = listPrice.getString("amount");
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 i++;
             }
+            if (titulo != null && autor != null) {
 
-            if (titulo != null) {
-
-                livro.setId(id);
-                livro.setTitulo(titulo);
-
-                Livro livro = db.buscaLivro(id);
-
-                //se não existir no banco cadastra
-                if (livro.getId().equals("naoExiste")) {
-                    //insert
-                    livro.setId(id);
-                    livro.setTitulo(titulo);
-                    db.addLivro(livro);
-
-                    Toast.makeText(getApplicationContext(),"ainda não cadastrado", Toast.LENGTH_SHORT).show();
-
-                }
-                //se ja existir abre a outra tela direto
-                else {
-                    Toast.makeText(getApplicationContext(),"ja existe", Toast.LENGTH_SHORT).show();
-                }
-
-                nomeTitulo.setText(livro.getTitulo());
+                nomeTitulo.setText(titulo);
 
                 autor = autor.replaceAll("\\[", "");
                 autor = autor.replaceAll("\\]", "");
                 autor = autor.replaceAll("\\\"", "");
                 nomeAutor.setText(autor);
+
+                nomePag.setText("N° de páginas: " + pag);
 
                 if(cat != null){
                     cat = cat.replaceAll("\\[", "");
@@ -205,16 +166,7 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
                     nomeCat.setText("Categoria: Não Identificado");
                 }
 
-                if(pag != null){
-                    nomePag.setText("N° de Páginas: " + pag);
-                } else {
-                    nomePag.setText("N° de Páginas: Não identificado");
-                }
-
                 stringLink = link;
-
-                preco = preco.replaceAll("\\.",",");
-                nomePreco.setText("$" + preco);
 
             } else {
                 nomeTitulo.setText(R.string.sem_resultado);
@@ -232,10 +184,7 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
             e.printStackTrace();
         }
     }
-
     @Override
     public void onLoaderReset(@NonNull Loader<String> loader) {
     }
-
-
 }
