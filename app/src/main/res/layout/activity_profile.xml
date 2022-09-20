@@ -6,6 +6,64 @@
     android:layout_height="match_parent"
     tools:context=".ProfileActivity">
 
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/ColorWhite"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <ImageButton
+                android:id="@+id/close"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#00FFFFFF"
+                android:scaleType="centerCrop"
+                android:src="@drawable/seta_voltar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.98"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10sp"
+                android:gravity="center"
+                android:text="@string/buscar_livros"
+                android:textColor="@color/ColorPrimaryText"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@drawable/blue_pink_line"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+            tools:layout_editor_absoluteX="-7dp" />
+    </LinearLayout>
+
+
     <TextView
         android:id="@+id/txtUsuario"
         android:layout_width="wrap_content"
@@ -14,13 +72,11 @@
         android:textColor="@color/Black"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="80dp"
-        app:srcCompat="@drawable/login"
-        tools:layout_editor_absoluteX="95dp"
-        tools:layout_editor_absoluteY="119dp"/>
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
+        app:srcCompat="@drawable/login"/>
 
     <EditText
         android:id="@+id/edtxtLogin"
@@ -63,6 +119,43 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtxtLogin"
         tools:ignore="TouchTargetSizeCheck" />
+    <EditText
+        android:id="@+id/edtxtLocalizacao"
+        android:layout_width="320dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/gray_background"
+        android:drawableEnd="@drawable/ic_baseline_location_on_24"
+        android:drawablePadding="5dp"
+        android:ems="10"
+        android:enabled="false"
+        android:hint="Insira a localização"
+        android:paddingStart="12dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="8dp"
+        android:textColorHint="@color/DarkGray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtxtSenha"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/btnLocalizacao"
+        android:layout_width="320dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/blue_rounded"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="Pesquisar localização"
+        android:textAllCaps="false"
+        android:textColor="@color/ColorWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtxtLocalizacao"
+        tools:ignore="HardcodedText,TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/btnEditar"
@@ -78,15 +171,15 @@
         android:textColor="@color/ColorWhite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtxtSenha"
-        tools:ignore="HardcodedText" />
+        app:layout_constraintTop_toBottomOf="@+id/btnLocalizacao"
+        tools:ignore="HardcodedText,TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/btnSair"
         android:layout_width="120dp"
         android:layout_height="38dp"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/blue_rounded"
         android:clickable="true"
         android:focusable="true"
@@ -96,18 +189,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnEditar"
-        tools:ignore="HardcodedText" />
+        tools:ignore="HardcodedText,TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
-    <ImageButton
-        android:id="@+id/close"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:backgroundTint="#00FFFFFF"
-        android:onClick="closeActivity"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_round_close_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.98"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
