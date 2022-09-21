@@ -23,12 +23,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button btnMenu = findViewById(R.id.buttonTeste);
+
         btnMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
                         MainActivity.this, R.style.BottomSheetDialogTheme
                 );
+
                 View bottomSheetView = LayoutInflater.from(getApplicationContext())
                         .inflate(
                                 R.layout.layout_bottom_sheet,
@@ -40,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent user = new Intent(getApplicationContext(), SearchActivity.class);
                         startActivity(user);
-
                     }
                 });
 
@@ -49,7 +50,14 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent perfil = new Intent(getApplicationContext(), ProfileActivity.class);
                         startActivity(perfil);
+                    }
+                });
 
+                bottomSheetView.findViewById(R.id.layoutFavoritos).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent favoritos = new Intent(getApplicationContext(), FavoritosActivity.class);
+                        startActivity(favoritos);
                     }
                 });
 

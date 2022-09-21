@@ -26,14 +26,23 @@ import org.json.JSONObject;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class SearchActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<String> {
     private EditText nomeLivro;
     private TextView nomeTitulo;
     private TextView nomeAutor;
     private TextView nomePag;
     private TextView nomeCat;
-    private Button buttonLink;
-    public String stringLink = null;
+    private Button buttonLink, buttonSalvar;
+    public String  stringId = null, stringTitulo = null, stringAutor = null, stringLink = null;
+    private static final String FILE_NAME = "usuarioLogado.json";
 
     ImageButton btnVoltar;
     @Override
@@ -47,10 +56,13 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
         nomePag = findViewById(R.id.pagText);
         nomeCat = findViewById(R.id.catText);
         buttonLink = findViewById(R.id.btnLink);
+        buttonSalvar = findViewById(R.id.btnSalvar);
+        btnVoltar = findViewById(R.id.VoltarLivros);
+
         if (getSupportLoaderManager().getLoader(0) != null) {
             getSupportLoaderManager().initLoader(0, null, this);
         }
-        btnVoltar = findViewById(R.id.VoltarLivros);
+
         btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,9 +80,28 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
                 }
             }
         });
+
     }
 
-
+    private String lerDados() {
+        FileInputStream fis;
+        try {
+            fis = openFileInput(FILE_NAME);
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader br = new BufferedReader(isr);
+            StringBuilder sb = new StringBuilder();
+            String text;
+            while ((text = br.readLine()) != null) {
+                sb.append(text).append("\n");
+            }
+            return sb.toString();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     private void gotoUrl(String s){
         Uri uri = Uri.parse(s);
@@ -123,6 +154,7 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
             JSONObject jsonObject = new JSONObject(data);
             JSONArray itemsArray = jsonObject.getJSONArray("items");
             int i = 0;
+            String id = null;
             String titulo = null;
             String autor = null;
             String pag = null;
@@ -140,7 +172,7 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
                     pag = volumeInfo.getString("pageCount");
                     cat = volumeInfo.getString("categories");
                     link = volumeInfo.getString("previewLink");
-
+                    id = volumeInfo.getString("id");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -166,8 +198,41 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
                     nomeCat.setText("Categoria: Não Identificado");
                 }
 
+                stringId = id;
+                stringTitulo = titulo;
+                stringAutor = autor;
                 stringLink = link;
 
+                buttonSalvar.setOnClickListener(v ->{
+                    Livro livroSalvo = new Livro(
+                            stringId,
+                            stringTitulo,
+                            stringAutor,
+                            stringLink
+                    );
+                    LivroDAO livroDAO = new LivroDAO(getApplicationContext());
+                    livroDAO.cadastrarLivro(livroSalvo);
+
+                    Gson gson = new Gson();
+                    String usuarioJson = lerDados();
+                    Usuario usuario = gson.fromJson(usuarioJson, Usuario.class);
+
+                    int fkUsuario = usuario.getId();
+
+                    Usuario usuarioFavorito = new Usuario(fkUsuario);
+                    Livro livroFavorito = new Livro(stringId);
+
+                    FavoritosDAO favoritos = new FavoritosDAO(getApplicationContext());
+
+                    try{
+                        favoritos.cadastrarFavorito(usuarioFavorito, livroFavorito);
+                        Toast.makeText(getApplicationContext(), "Livro favoritado", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getBaseContext(), FavoritosActivity.class));
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
+                });
             } else {
                 nomeTitulo.setText(R.string.sem_resultado);
                 nomeAutor.setText(R.string.vazio);

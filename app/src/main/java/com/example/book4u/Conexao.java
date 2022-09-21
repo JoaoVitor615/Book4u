@@ -23,10 +23,16 @@ public class Conexao extends SQLiteOpenHelper {
                 "login TEXT NOT NULL," +
                 "senha TEXT NOT NULL," +
                 "nome TEXT NOT NULL)");
+        db.execSQL("CREATE TABLE tbLivro(" +
+                "idLivro INTEGER," +
+                "tituloLivro TEXT NOT NULL," +
+                "autorLivro TEXT NOT NULL," +
+                "linkLivro TEXT)");
         db.execSQL("CREATE TABLE tbFavoritos(" +
                 "fkUsuario INTEGER," +
-                "idLivro TEXT NOT NULL," +
-                "FOREIGN KEY (fkUsuario) REFERENCES tbUsuario (idUsuario))");
+                "fkLivro TEXT," +
+                "FOREIGN KEY (fkUsuario) REFERENCES tbUsuario (idUsuario), " +
+                "FOREIGN KEY (fkLivro) REFERENCES tbLivro (idLivro))");
     }
 
     @Override

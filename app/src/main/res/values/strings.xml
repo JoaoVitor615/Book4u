@@ -40,4 +40,13 @@
     <string name="sem_endereco">Endereço indisponível</string>
     <string name="coordenada_invalida">Coordenadas inválidas</string>
     <string name="servico_indisponivel">Esse serviço está indisponível</string>
+    <string name="adicionar_aos_favoritos">Adicionar aos favoritos</string>
+    <string name="ver_mais">Ver mais</string>
+    <string name="valor">Valor</string>
+    <string name="categoria">Categoria</string>
+    <string name="n_de_p_ginas">N° de Páginas</string>
+    <string name="autor">Autor</string>
+    <string name="t_tulo_do_livro">Título do Livro</string>
+    <string name="resultados">Resultados</string>
+    <string name="livros_favoritos">Livros favoritos</string>
 </resources>

@@ -23,6 +23,10 @@ public class Usuario implements Serializable {
         Nome = nome;
     }
 
+    public Usuario(int id){
+
+    }
+
     public String getNome() {
         return Nome;
     }

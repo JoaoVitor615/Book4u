@@ -93,11 +93,6 @@ public class ProfileActivity extends AppCompatActivity implements BuscarEndereco
             }
         });
             mLocationCallback = new LocationCallback() {
-                /**
-                 * This is the callback that is triggered when the
-                 * FusedLocationClient updates your location.
-                 * @param locationResult The result containing the device location.
-                 */
                 @Override
                 public void onLocationResult(LocationResult locationResult) {
                     // If tracking is turned on, reverse geocode into an address
@@ -111,41 +106,44 @@ public class ProfileActivity extends AppCompatActivity implements BuscarEndereco
             mPreferences = getSharedPreferences(PREFERENCIAS_NAME, MODE_PRIVATE);
             recuperar();
 
-        Gson gson = new Gson();
-        String usuarioJson = lerDados();
-        Usuario usuario = gson.fromJson(usuarioJson, Usuario.class);
+            Gson gson = new Gson();
+            String usuarioJson = lerDados();
+            Usuario usuario = gson.fromJson(usuarioJson, Usuario.class);
 
-        txtUsuario.setText(usuario.getNome());
-        txtLogin.setHint(usuario.getLogin());
+            txtUsuario.setText(usuario.getNome());
+            txtLogin.setHint(usuario.getLogin());
 
-        btnEditar.setOnClickListener(v -> {
-            Intent intentEditar = new Intent(getApplicationContext(), Cadastro.class);
-            intentEditar.putExtra("Usuario", usuario);
-            startActivity(intentEditar);
-        });
+            btnEditar.setOnClickListener(v -> {
+                Intent intentEditar = new Intent(getApplicationContext(), Cadastro.class);
+                intentEditar.putExtra("Usuario", usuario);
+                startActivity(intentEditar);
+            });
 
-        ImageButton btnClose = findViewById(R.id.close);
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent main = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(main);
-            }
-        });
+            ImageButton btnClose = findViewById(R.id.close);
+            btnClose.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent main = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(main);
+                }
+            });
 
-        btnSair.setOnClickListener(v -> {
-            Intent login = new Intent(getApplicationContext(), LoginActivity.class);
-            startActivity(login);
-        });
+            btnSair.setOnClickListener(v -> {
+                Intent login = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(login);
+            });
         }
 
         private void startTrackingLocation() {
         if (ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]
-                            {Manifest.permission.ACCESS_FINE_LOCATION},
-                    REQUEST_LOCATION_PERMISSION);
+            Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+        this, new String[]{
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                },
+                REQUEST_LOCATION_PERMISSION
+            );
         } else {
             mTrackingLocation = true;
             mFusedLocationClient.requestLocationUpdates
@@ -157,8 +155,7 @@ public class ProfileActivity extends AppCompatActivity implements BuscarEndereco
                     getString(R.string.loading), null, null,
                     System.currentTimeMillis()));
             mLocationButton.setText(R.string.parar_busca);
-
-        }
+            }
         }
 
     private LocationRequest getLocationRequest() {
@@ -169,7 +166,6 @@ public class ProfileActivity extends AppCompatActivity implements BuscarEndereco
         return locationRequest;
     }
 
-
         private void stopTrackingLocation() {
             if (mTrackingLocation) {
                 mTrackingLocation = false;
@@ -177,7 +173,6 @@ public class ProfileActivity extends AppCompatActivity implements BuscarEndereco
                 mLocationTextView.setText(R.string.hint_busca);
             }
         }
-
 
         @Override protected void onSaveInstanceState(Bundle outState) {
             outState.putBoolean(TRACKING_LOCATION_KEY, mTrackingLocation);
@@ -202,7 +197,6 @@ public class ProfileActivity extends AppCompatActivity implements BuscarEndereco
                 }
             }
 
-
             @Override
             public void onTaskCompleted(String[] result) {
                 if (mTrackingLocation) {
@@ -225,7 +219,6 @@ public class ProfileActivity extends AppCompatActivity implements BuscarEndereco
                 }
             }
 
-
             @Override
             protected void onResume() {
                 if (mTrackingLocation) {
@@ -235,8 +228,6 @@ public class ProfileActivity extends AppCompatActivity implements BuscarEndereco
                 recuperar();
                 super.onResume();
             }
-
-
 
             private void armazenar(String latitude, String longitude, String lastAdress) {
                 SharedPreferences.Editor preferencesEditor = mPreferences.edit();
@@ -252,11 +243,9 @@ public class ProfileActivity extends AppCompatActivity implements BuscarEndereco
                 lastLongitude = mPreferences.getString(LONGITUDE_KEY, "");
                 long time = mPreferences.getLong(LASTDATE_KEY, 0);
                 lastAdress = mPreferences.getString(LASTADRESS_KEY, "");
-                Toast.makeText(this, getString(R.string.endereco, lastAdress, lastLatitude, lastLongitude, time),
-                        Toast.LENGTH_SHORT).show();
-
+                //Toast.makeText(this, getString(R.string.endereco, lastAdress, lastLatitude, lastLongitude, time),
+                //Toast.LENGTH_SHORT).show();
             }
-
 
     private String lerDados() {
         FileInputStream fis;
